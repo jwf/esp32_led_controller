@@ -5,8 +5,8 @@ idf_component_register(
 )
 
 # Add certificate files to the build
-target_add_binary_data(${COMPONENT_TARGET} "certs/server_cert.pem" TEXT)
-target_add_binary_data(${COMPONENT_TARGET} "certs/server_key.pem" TEXT)
+target_add_binary_data(${COMPONENT_TARGET} "${CMAKE_CURRENT_SOURCE_DIR}/certs/server_cert.pem" TEXT)
+target_add_binary_data(${COMPONENT_TARGET} "${CMAKE_CURRENT_SOURCE_DIR}/certs/server_key.pem" TEXT)
 
 # Create a custom target to copy the HTML file to the SPIFFS image
 add_custom_command(
