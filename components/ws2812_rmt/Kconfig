@@ -1,0 +1,40 @@
+menu "WS2812 LED Configuration"
+
+    config WS2812_GPIO
+        int "GPIO for WS2812 LED strip"
+        default 17
+        help
+            GPIO pin to use for WS2812 LED strip control.
+
+    config WS2812_LED_RMT_TX_CHANNEL
+        int "RMT TX Channel"
+        default 0
+        range 0 7
+        help
+            RMT TX channel to use for WS2812 LED control.
+
+    config WS2812_T0H
+        int "T0H (0 bit high time in ns)"
+        default 400
+        help
+            High time for 0 bit in nanoseconds.
+
+    config WS2812_T1H
+        int "T1H (1 bit high time in ns)"
+        default 800
+        help
+            High time for 1 bit in nanoseconds.
+
+    config WS2812_T0L
+        int "T0L (0 bit low time in ns)"
+        default 850
+        help
+            Low time for 0 bit in nanoseconds.
+
+    config WS2812_T1L
+        int "T1L (1 bit low time in ns)"
+        default 450
+        help
+            Low time for 1 bit in nanoseconds.
+
+endmenu 

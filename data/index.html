@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LED Controller</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .animation-controls {
+            margin-top: 20px;
+        }
+        .color-picker {
+            margin: 10px 0;
+        }
+        .slider {
+            width: 100%;
+            margin: 10px 0;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .animation-button {
+            width: 120px;
+        }
+        .status {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .success {
+            background-color: #dff0d8;
+            color: #3c763d;
+        }
+        .error {
+            background-color: #f2dede;
+            color: #a94442;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>LED Controller</h1>
+        
+        <div class="animation-controls">
+            <h2>Animations</h2>
+            <div>
+                <button class="animation-button" onclick="startAnimation(0)">Off</button>
+                <button class="animation-button" onclick="startAnimation(1)">Rainbow</button>
+                <button class="animation-button" onclick="startAnimation(2)">Breathing</button>
+                <button class="animation-button" onclick="startAnimation(3)">Chase</button>
+                <button class="animation-button" onclick="startAnimation(4)">Fire</button>
+                <button class="animation-button" onclick="startAnimation(5)">Lightning</button>
+                <button class="animation-button" onclick="startAnimation(6)">Ocean</button>
+                <button class="animation-button" onclick="startAnimation(7)">Aurora</button>
+            </div>
+
+            <div class="color-picker">
+                <h3>Color</h3>
+                <input type="color" id="colorPicker" value="#ffffff">
+            </div>
+
+            <div>
+                <h3>Speed</h3>
+                <input type="range" min="10" max="200" value="50" class="slider" id="speedSlider">
+                <p>Speed: <span id="speedValue">50</span>ms</p>
+            </div>
+
+            <div>
+                <h3>Brightness</h3>
+                <input type="range" min="0" max="100" value="100" class="slider" id="brightnessSlider">
+                <p>Brightness: <span id="brightnessValue">100</span>%</p>
+            </div>
+        </div>
+
+        <div id="status" class="status" style="display: none;"></div>
+    </div>
+
+    <script>
+        const colorPicker = document.getElementById('colorPicker');
+        const speedSlider = document.getElementById('speedSlider');
+        const brightnessSlider = document.getElementById('brightnessSlider');
+        const speedValue = document.getElementById('speedValue');
+        const brightnessValue = document.getElementById('brightnessValue');
+        const statusDiv = document.getElementById('status');
+
+        speedSlider.oninput = function() {
+            speedValue.textContent = this.value;
+        }
+
+        brightnessSlider.oninput = function() {
+            brightnessValue.textContent = this.value;
+        }
+
+        function hexToRgb(hex) {
+            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return result ? {
+                r: parseInt(result[1], 16),
+                g: parseInt(result[2], 16),
+                b: parseInt(result[3], 16)
+            } : null;
+        }
+
+        function showStatus(message, isError = false) {
+            statusDiv.textContent = message;
+            statusDiv.className = 'status ' + (isError ? 'error' : 'success');
+            statusDiv.style.display = 'block';
+            setTimeout(() => {
+                statusDiv.style.display = 'none';
+            }, 3000);
+        }
+
+        function startAnimation(type) {
+            const color = hexToRgb(colorPicker.value);
+            const config = {
+                type: type,
+                speed: parseInt(speedSlider.value),
+                brightness: parseInt(brightnessSlider.value),
+                color: {
+                    r: color.r,
+                    g: color.g,
+                    b: color.b
+                }
+            };
+
+            fetch('/api/animation', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(config)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                showStatus('Animation started successfully');
+            })
+            .catch(error => {
+                showStatus('Error starting animation: ' + error.message, true);
+            });
+        }
+    </script>
+</body>
+</html> 
