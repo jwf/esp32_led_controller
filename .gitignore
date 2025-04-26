@@ -1,0 +1,37 @@
+# ESP-IDF build output
+build/
+
+# Python virtual environments
+venv/
+.env/
+
+# Compiled object files and binaries
+*.o
+*.d
+*.elf
+*.bin
+*.map
+*.hex
+*.a
+*.pyc
+__pycache__/
+
+# Editor/project files
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+
+# SPIFFS and partition images
+*.img
+*.spiffs
+
+# CMake generated files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# Other
+*.log 
