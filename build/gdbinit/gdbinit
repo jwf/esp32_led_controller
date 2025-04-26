@@ -1,0 +1,2 @@
+source /Users/jordanfrank/Projects/esp32_led_controller/build/gdbinit/symbols
+source /Users/jordanfrank/Projects/esp32_led_controller/build/gdbinit/connect

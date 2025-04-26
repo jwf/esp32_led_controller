@@ -20,6 +20,7 @@ typedef enum {
     ANIMATION_LIGHTNING,
     ANIMATION_OCEAN,
     ANIMATION_AURORA,
+    ANIMATION_SOLID_COLOR,
     ANIMATION_MAX
 } animation_type_t;
 
@@ -29,7 +30,7 @@ typedef enum {
 typedef struct {
     animation_type_t type;     /*!< Type of animation */
     uint32_t speed;            /*!< Animation speed (ms between updates) */
-    uint32_t brightness;       /*!< LED brightness (0-100) */
+    uint32_t brightness;       /*!< LED brightness (0-255) */
     uint8_t r, g, b;          /*!< Base color for animations that use a single color */
 } animation_config_t;
 

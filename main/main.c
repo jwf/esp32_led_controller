@@ -15,8 +15,6 @@
 #include "cJSON.h"
 #include "ws2812_control.h"
 #include "ws2812_animations.h"
-#include "esp_tls.h"
-#include "esp_https_server.h"
 
 #define WIFI_SSID      "groucho"
 #define WIFI_PASS      "frankfamilywn"
@@ -401,29 +399,10 @@ static esp_err_t init_spiffs(void)
 // Start HTTP server
 static httpd_handle_t start_webserver(void)
 {
-    // Load the certificate and private key
-    extern const uint8_t server_cert_pem_start[] asm("_binary_server_cert_pem_start");
-    extern const uint8_t server_cert_pem_end[] asm("_binary_server_cert_pem_end");
-    extern const uint8_t server_key_pem_start[] asm("_binary_server_key_pem_start");
-    extern const uint8_t server_key_pem_end[] asm("_binary_server_key_pem_end");
-
-    // Configure HTTPS server
-    httpd_ssl_config_t config = HTTPD_SSL_CONFIG_DEFAULT();
-    config.httpd.stack_size = 8192;
-    config.httpd.max_uri_handlers = 8;
-    config.httpd.max_open_sockets = 4;
-    config.httpd.lru_purge_enable = true;
-    config.httpd.recv_wait_timeout = 5;
-    config.httpd.send_wait_timeout = 5;
+    httpd_config_t config = HTTPD_DEFAULT_CONFIG();
+    config.stack_size = 8192;
     
-    // Set the certificate and key
-    config.cacert_pem = server_cert_pem_start;
-    config.cacert_len = server_cert_pem_end - server_cert_pem_start;
-    config.prvtkey_pem = server_key_pem_start;
-    config.prvtkey_len = server_key_pem_end - server_key_pem_start;
-    
-    // Start the HTTPS server
-    if (httpd_ssl_start(&server, &config) == ESP_OK) {
+    if (httpd_start(&server, &config) == ESP_OK) {
         httpd_register_uri_handler(server, &root);
         httpd_register_uri_handler(server, &led_get);
         httpd_register_uri_handler(server, &led_post);

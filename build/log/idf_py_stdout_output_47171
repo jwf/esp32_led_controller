@@ -1,0 +1,18 @@
+Command: ninja all
+[1/9] Performing build step for 'bootloader'
+[1/1] cd /Users/jordanfrank/Projects/esp32_led_controller/build/bootloader/esp-idf/esptool_py && /Users/jordanfrank/.espressif/python_env/idf5.5_py3.13_env/bin/python /Users/jordanfrank/Projects/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 /Users/jordanfrank/Projects/esp32_led_controller/build/bootloader/bootloader.bin
+Bootloader binary size 0x5600 bytes. 0x1a00 bytes (23%) free.
+[2/9] No install step for 'bootloader'
+[3/9] Completed 'bootloader'
+[4/9] Building C object esp-idf/ws2812_rmt/CMakeFiles/__idf_ws2812_rmt.dir/ws2812_animations.c.obj
+[5/9] Linking C static library esp-idf/ws2812_rmt/libws2812_rmt.a
+[6/9] Generating esp-idf/esp_system/ld/sections.ld
+[7/9] Linking CXX executable esp32_led_controller.elf
+[8/9] Generating binary image from built executable
+esptool.py v4.9.dev6
+Creating esp32s2 image...
+Merged 2 ELF sections
+Successfully created esp32s2 image.
+Generated /Users/jordanfrank/Projects/esp32_led_controller/build/esp32_led_controller.bin
+[9/9] cd /Users/jordanfrank/Projects/esp32_led_controller/build/esp-idf/esptool_py && /Users/jordanfrank/.espressif/python_env/idf5.5_py3.13_env/bin/python /Users/jordanfrank/Projects/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app /Users/jordanfrank/Projects/esp32_led_controller/build/partition_table/partition-table.bin /Users/jordanfrank/Projects/esp32_led_controller/build/esp32_led_controller.bin
+esp32_led_controller.bin binary size 0xd1410 bytes. Smallest app partition is 0x100000 bytes. 0x2ebf0 bytes (18%) free.

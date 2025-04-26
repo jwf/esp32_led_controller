@@ -23,7 +23,7 @@ static float smooth_sin(float x) {
 static void animation_task(void *pvParameters)
 {
     uint32_t hue = 0;
-    float brightness = 0.0f;
+    float brightness = 1.0f;
     bool increasing = true;
     uint8_t position = 0;
     float time = 0.0f;  // For time-based animations
@@ -43,7 +43,23 @@ static void animation_task(void *pvParameters)
                 hue = (hue + 1) % 360;
                 break;
 
+            case ANIMATION_SOLID_COLOR:
+                // Set all LEDs to the same color
+                for (int i = 0; i < NUM_LEDS; i++) {
+                    led_buffer[i * 3] = current_config.g;     // Green
+                    led_buffer[i * 3 + 1] = current_config.r; // Red
+                    led_buffer[i * 3 + 2] = current_config.b; // Blue
+                }
+                break;
+
             case ANIMATION_BREATHING:
+                // Log values periodically (every 50 frames to avoid spam)
+                static int frame_count = 0;
+                if (frame_count++ % 50 == 0) {
+                    ESP_LOGI(TAG, "Breathing animation - RGB: (%d, %d, %d), brightness: %.2f",
+                            current_config.r, current_config.g, current_config.b, brightness);
+                }
+                
                 // Breathing animation - fade in and out
                 if (increasing) {
                     brightness += 0.01f;
@@ -157,7 +173,7 @@ static void animation_task(void *pvParameters)
 
         // Apply brightness
         for (int i = 0; i < NUM_LEDS * 3; i++) {
-            led_buffer[i] = (led_buffer[i] * current_config.brightness) / 100;
+            led_buffer[i] = (led_buffer[i] * current_config.brightness) / 255;
         }
 
         // Update LEDs
@@ -179,7 +195,7 @@ esp_err_t animation_init(void)
     // Initialize with no animation
     current_config.type = ANIMATION_NONE;
     current_config.speed = 50;
-    current_config.brightness = 100;
+    current_config.brightness = 128;  // Default to 50% brightness in 0-255 range
     current_config.r = 255;
     current_config.g = 255;
     current_config.b = 255;
@@ -201,6 +217,11 @@ esp_err_t animation_start(const animation_config_t *config)
 
     // Update configuration
     memcpy(&current_config, config, sizeof(animation_config_t));
+    
+    // Log the RGB values
+    ESP_LOGI(TAG, "Starting animation type %d with RGB: (%d, %d, %d), brightness: %d, speed: %d",
+             current_config.type, current_config.r, current_config.g, current_config.b,
+             current_config.brightness, current_config.speed);
 
     // Start new animation task
     BaseType_t ret = xTaskCreate(animation_task, "led_animation", 4096, NULL, 5, &animation_task_handle);

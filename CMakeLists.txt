@@ -1,7 +1,10 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.10)
 
 # Set the partition table file
 set(PARTITION_TABLE_CSV ${CMAKE_CURRENT_LIST_DIR}/partitions.csv)
+
+# Prevent automatic rebuilding when CMakeLists.txt is modified
+set(CMAKE_SKIP_AUTOGEN ON)
 
 include($ENV{IDF_PATH}/tools/cmake/project.cmake)
 

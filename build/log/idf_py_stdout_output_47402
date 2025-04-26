@@ -1,0 +1,90 @@
+Command: ninja flash-all
+[1/1] Flashing all partitions
+Flashing all partitions...
+Executing action: flash
+Serial port /dev/cu.usbserial-2320
+Connecting....
+Detecting chip type... Unsupported detection protocol, switching and trying again...
+Detecting chip type... ESP32-S2
+Running ninja in directory /Users/jordanfrank/Projects/esp32_led_controller/build
+Executing "ninja flash"...
+[1/5] cd /Users/jordanfrank/Projects/esp32_led_controller/build/esp-idf/esptool_py && /Users/jordanfrank/.espressif/python_env/idf5.5_py3.13_env/bin/python /Users/jordanfrank/Projects/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app /Users/jordanfrank/Projects/esp32_led_controller/build/partition_table/partition-table.bin /Users/jordanfrank/Projects/esp32_led_controller/build/esp32_led_controller.bin
+esp32_led_controller.bin binary size 0xd1410 bytes. Smallest app partition is 0x100000 bytes. 0x2ebf0 bytes (18%) free.
+[2/5] Performing build step for 'bootloader'
+[1/1] cd /Users/jordanfrank/Projects/esp32_led_controller/build/bootloader/esp-idf/esptool_py && /Users/jordanfrank/.espressif/python_env/idf5.5_py3.13_env/bin/python /Users/jordanfrank/Projects/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 /Users/jordanfrank/Projects/esp32_led_controller/build/bootloader/bootloader.bin
+Bootloader binary size 0x5600 bytes. 0x1a00 bytes (23%) free.
+[3/5] No install step for 'bootloader'
+[4/5] Completed 'bootloader'
+[4/5] cd /Users/jordanfrank/Projects/esp/esp-idf/components/esptool_py && /opt/homebrew/bin/cmake -D IDF_PATH=/Users/jordanfrank/Projects/esp/esp-idf -D "SERIAL_TOOL=/Users/jordanfrank/.espressif/python_env/idf5.5_py3.13_env/bin/python;;/Users/jordanfrank/Projects/esp/esp-idf/components/esptool_py/esptool/esptool.py;--chip;esp32s2" -D "SERIAL_TOOL_ARGS=--before=default_reset;--after=hard_reset;write_flash;@flash_args" -D WORKING_DIRECTORY=/Users/jordanfrank/Projects/esp32_led_controller/build -P /Users/jordanfrank/Projects/esp/esp-idf/components/esptool_py/run_serial_tool.cmake
+esptool.py --chip esp32s2 -p /dev/cu.usbserial-2320 -b 460800 --before=default_reset --after=hard_reset write_flash --flash_mode dio --flash_freq 80m --flash_size 4MB 0x1000 bootloader/bootloader.bin 0x10000 esp32_led_controller.bin 0x8000 partition_table/partition-table.bin 0x110000 /Users/jordanfrank/Projects/esp32_led_controller/build/spiffs_image.bin
+esptool.py v4.9.dev6
+Serial port /dev/cu.usbserial-2320
+Connecting.....
+Chip is ESP32-S2 (revision v0.0)
+Features: WiFi, No Embedded Flash, No Embedded PSRAM, ADC and temperature sensor calibration in BLK2 of efuse V1
+Crystal is 40MHz
+MAC: 7c:df:a1:0d:24:90
+Uploading stub...
+Running stub...
+Stub running...
+Changing baud rate to 460800
+Changed.
+Configuring flash size...
+Flash will be erased from 0x00001000 to 0x00006fff...
+Flash will be erased from 0x00010000 to 0x000e1fff...
+Flash will be erased from 0x00008000 to 0x00008fff...
+Flash will be erased from 0x00110000 to 0x0020ffff...
+SHA digest in image updated
+Compressed 22016 bytes to 13933...
+Writing at 0x00001000... (100 %)
+Wrote 22016 bytes (13933 compressed) at 0x00001000 in 0.6 seconds (effective 280.3 kbit/s)...
+Hash of data verified.
+Compressed 857104 bytes to 543474...
+Writing at 0x00010000... (2 %)
+Writing at 0x0001cadc... (5 %)
+Writing at 0x0002606c... (8 %)
+Writing at 0x00030ca5... (11 %)
+Writing at 0x000369ee... (14 %)
+Writing at 0x0003c8cc... (17 %)
+Writing at 0x000424db... (20 %)
+Writing at 0x00047e96... (23 %)
+Writing at 0x0004dde8... (26 %)
+Writing at 0x000537c8... (29 %)
+Writing at 0x00059519... (32 %)
+Writing at 0x0005f27c... (35 %)
+Writing at 0x00064d65... (38 %)
+Writing at 0x0006ad17... (41 %)
+Writing at 0x00070909... (44 %)
+Writing at 0x00076771... (47 %)
+Writing at 0x0007b5c1... (50 %)
+Writing at 0x00080855... (52 %)
+Writing at 0x00085810... (55 %)
+Writing at 0x0008a94f... (58 %)
+Writing at 0x0008fce5... (61 %)
+Writing at 0x000950d7... (64 %)
+Writing at 0x0009b0cd... (67 %)
+Writing at 0x000a0cbc... (70 %)
+Writing at 0x000a6a36... (73 %)
+Writing at 0x000aca58... (76 %)
+Writing at 0x000b1e0a... (79 %)
+Writing at 0x000b7f06... (82 %)
+Writing at 0x000c288f... (85 %)
+Writing at 0x000c85ea... (88 %)
+Writing at 0x000cec70... (91 %)
+Writing at 0x000d4c83... (94 %)
+Writing at 0x000dae03... (97 %)
+Writing at 0x000dffdc... (100 %)
+Wrote 857104 bytes (543474 compressed) at 0x00010000 in 13.2 seconds (effective 519.0 kbit/s)...
+Hash of data verified.
+Compressed 3072 bytes to 117...
+Writing at 0x00008000... (100 %)
+Wrote 3072 bytes (117 compressed) at 0x00008000 in 0.1 seconds (effective 388.6 kbit/s)...
+Hash of data verified.
+Compressed 1048576 bytes to 5078...
+Writing at 0x00110000... (100 %)
+Wrote 1048576 bytes (5078 compressed) at 0x00110000 in 6.7 seconds (effective 1247.5 kbit/s)...
+Hash of data verified.
+
+Leaving...
+Hard resetting via RTS pin...
+Done

@@ -1,0 +1,103 @@
+Command: /Users/jordanfrank/.espressif/python_env/idf5.5_py3.13_env/bin/python /Users/jordanfrank/Projects/esp/esp-idf/tools/idf_monitor.py -p /dev/cu.usbserial-230 -b 115200 --toolchain-prefix xtensa-esp32s2-elf- --target esp32s2 --revision 0 /Users/jordanfrank/Projects/esp32_led_controller/build/esp32_led_controller.elf /Users/jordanfrank/Projects/esp32_led_controller/build/bootloader/bootloader.elf -m '/Users/jordanfrank/.espressif/python_env/idf5.5_py3.13_env/bin/python' '/Users/jordanfrank/Projects/esp/esp-idf/tools/idf.py'
+ESP-ROM:esp32s2-rc4-20191025
+Build:Oct 25 2019
+rst:0x1 (POWERON),boot:0x8 (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3ffe5110,len:0x16a4
+load:0x4004a000,len:0xb18
+load:0x4004e000,len:0x33e4
+entry 0x4004a1c4
+[0;32mI (21) boot: ESP-IDF v5.5-dev-3190-gabe7680142-dirty 2nd stage bootloader[0m
+[0;32mI (21) boot: compile time Apr 22 2025 20:27:19[0m
+[0;32mI (22) boot: chip revision: v0.0[0m
+[0;32mI (24) boot: efuse block revision: v0.1[0m
+[0;32mI (28) boot.esp32s2: SPI Speed      : 80MHz[0m
+[0;32mI (32) boot.esp32s2: SPI Mode       : DIO[0m
+[0;32mI (35) boot.esp32s2: SPI Flash Size : 4MB[0m
+[0;32mI (39) boot: Enabling RNG early entropy source...[0m
+[0;32mI (44) boot: Partition Table:[0m
+[0;32mI (46) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (53) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (59) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (66) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (72) boot:  3 storage          Unknown data     01 82 00110000 00100000[0m
+[0;32mI (79) boot: End of partition table[0m
+[0;32mI (82) esp_image: segment 0: paddr=00010020 vaddr=3f000020 size=1d624h (120356) map[0m
+[0;32mI (114) esp_image: segment 1: paddr=0002d64c vaddr=3ff9e000 size=0001ch (    28) load[0m
+[0;32mI (114) esp_image: segment 2: paddr=0002d670 vaddr=3ffcabe0 size=029a8h ( 10664) load[0m
+[0;32mI (120) esp_image: segment 3: paddr=00030020 vaddr=40080020 size=995c0h (628160) map[0m
+[0;32mI (252) esp_image: segment 4: paddr=000c95e8 vaddr=3ffcd588 size=011e0h (  4576) load[0m
+[0;32mI (254) esp_image: segment 5: paddr=000ca7d0 vaddr=40024000 size=16bd4h ( 93140) load[0m
+[0;32mI (291) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (291) boot: Disabling RNG early entropy source...[0m
+[0;32mI (300) cache: Instruction cache 	: size 8KB, 4Ways, cache line size 32Byte[0m
+[0;32mI (301) cache: Data cache 		: size 8KB, 4Ways, cache line size 32Byte[0m
+[0;32mI (318) cpu_start: Unicore app[0m
+[0;32mI (326) cpu_start: Pro cpu start user code[0m
+[0;32mI (326) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (326) app_init: Application information:[0m
+[0;32mI (326) app_init: Project name:     esp32_led_controller[0m
+[0;32mI (331) app_init: App version:      e9fb941-dirty[0m
+[0;32mI (335) app_init: Compile time:     Apr 22 2025 20:27:12[0m
+[0;32mI (340) app_init: ELF file SHA256:  1c1a7be37...[0m
+[0;32mI (345) app_init: ESP-IDF:          v5.5-dev-3190-gabe7680142-dirty[0m
+[0;32mI (351) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (354) efuse_init: Max chip rev:     v1.99 [0m
+[0;32mI (358) efuse_init: Chip rev:         v0.0[0m
+[0;32mI (362) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (369) heap_init: At 3FFD31D8 len 00028E28 (163 KiB): RAM[0m
+[0;32mI (374) heap_init: At 3FFFC000 len 00003A10 (14 KiB): RAM[0m
+[0;32mI (379) heap_init: At 3FF9E01C len 00001FCC (7 KiB): RTCRAM[0m
+[0;32mI (385) spi_flash: detected chip: generic[0m
+[0;32mI (388) spi_flash: flash io: dio[0m
+[0;32mI (395) main_task: Started on CPU0[0m
+[0;32mI (395) main_task: Calling app_main()[0m
+[0;32mI (405) led_controller: Initializing SPIFFS[0m
+[0;32mI (435) led_controller: Partition size: total: 956561, used: 10040[0m
+[0;32mI (435) led_encoder: Create RMT TX channel[0m
+[0;32mI (435) led_encoder: Install led strip encoder[0m
+[0;32mI (435) led_encoder: Enable RMT TX channel[0m
+[0;32mI (465) wifi:wifi driver task: 3ffd8d7c, prio:23, stack:6656, core=0[0m
+[0;32mI (475) wifi:wifi firmware version: 897a774[0m
+[0;32mI (475) wifi:wifi certification version: v7.0[0m
+[0;32mI (475) wifi:config NVS flash: enabled[0m
+[0;32mI (475) wifi:config nano formatting: disabled[0m
+[0;32mI (475) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (485) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (485) wifi:Init management short buffer num: 32[0m
+[0;32mI (485) wifi:Init dynamic tx buffer num: 32[0m
+[0;32mI (495) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (495) wifi:Init static rx buffer num: 10[0m
+[0;32mI (505) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (505) wifi_init: rx ba win: 6[0m
+[0;32mI (505) wifi_init: accept mbox: 6[0m
+[0;32mI (515) wifi_init: tcpip mbox: 32[0m
+[0;32mI (515) wifi_init: udp mbox: 6[0m
+[0;32mI (515) wifi_init: tcp mbox: 6[0m
+[0;32mI (515) wifi_init: tcp tx win: 5760[0m
+[0;32mI (525) wifi_init: tcp rx win: 5760[0m
+[0;32mI (525) wifi_init: tcp mss: 1440[0m
+[0;32mI (525) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (535) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (535) phy_init: phy_version 2621,889f88c,Feb 28 2025,14:48:08[0m
+[0;32mI (585) wifi:mode : sta (7c:df:a1:0d:24:90)[0m
+[0;32mI (585) wifi:enable tsf[0m
+[0;32mI (595) main_task: Returned from app_main()[0m
+[0;32mI (595) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (595) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (615) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (645) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (685) wifi:connected with groucho, aid = 2, channel 1, BW20, bssid = 90:ca:fa:2e:49:c8[0m
+[0;32mI (685) wifi:security: WPA2-PSK, phy: bgn, rssi: -55[0m
+[0;32mI (685) wifi:pm start, type: 1[0m
+
+[0;32mI (695) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us[0m
+[0;32mI (735) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us[0m
+[0;32mI (735) wifi:AP's beacon interval = 102400 us, DTIM period = 2[0m
+[0;32mI (1235) wifi:<ba-add>idx:0 (ifx:0, 90:ca:fa:2e:49:c8), tid:6, ssn:2, winSize:64[0m
+[0;32mI (2265) esp_netif_handlers: sta ip: 192.168.86.44, mask: 255.255.255.0, gw: 192.168.86.1[0m
+[0;32mI (2265) led_controller: Got IP: 192.168.86.44[0m
+[0;32mI (2265) mdns_mem: mDNS task will be created from internal RAM[0m
+[0;32mI (2265) led_controller: mDNS initialized successfully[0m
+[0;32mI (6375) wifi:<ba-add>idx:1 (ifx:0, 90:ca:fa:2e:49:c8), tid:0, ssn:0, winSize:64[0m
