@@ -54,12 +54,6 @@ static void animation_task(void *pvParameters)
 
             case ANIMATION_BREATHING:
                 // Log values periodically (every 50 frames to avoid spam)
-                static int frame_count = 0;
-                if (frame_count++ % 50 == 0) {
-                    ESP_LOGI(TAG, "Breathing animation - RGB: (%d, %d, %d), brightness: %.2f",
-                            current_config.r, current_config.g, current_config.b, brightness);
-                }
-                
                 // Breathing animation - fade in and out
                 if (increasing) {
                     brightness += 0.01f;
